@@ -1,0 +1,8 @@
+[package]
+name = "plymouth-client"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.98"
+enum-repr = "0.2.6"
