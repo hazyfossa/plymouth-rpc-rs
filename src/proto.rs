@@ -1,34 +1,6 @@
-extern crate enum_repr;
 use anyhow::{Context, Result, bail};
-use enum_repr::EnumRepr;
-use std::{ffi::CString, io};
 
-#[EnumRepr(type = "char")]
-pub enum Method {
-    Ping = 'P',
-    Update = 'U',
-    ChangeMode = 'C',
-    SystemUpdate = 'u',
-    SystemInitialized = 'S',
-    Deactivate = 'D',
-    Reactivate = 'r',
-    Quit = 'Q',
-    Reload = 'l',
-    Password = '*',
-    CachedPassword = 'c',
-    Question = 'W',
-    ShowMessage = 'M',
-    HideMessage = 'm',
-    Keystroke = 'K',
-    KeystrokeRemove = 'L',
-    ProgressPause = 'A',
-    ProgressUnpause = 'a',
-    ShowSplash = '$',
-    HideSplash = 'H',
-    Newroot = 'R',
-    HasActiveVt = 'V',
-    Error = '!',
-}
+use std::{ffi::CString, io};
 
 fn read_byte(stream: &mut impl io::Read) -> io::Result<u8> {
     let mut buf = vec![0 as u8; 1];

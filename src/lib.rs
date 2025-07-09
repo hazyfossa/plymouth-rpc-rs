@@ -1,9 +1,12 @@
+mod macros;
+mod proto;
+
 use anyhow::{Context, Result};
 use std::{io::Write, os::unix::net::UnixStream};
 
-mod proto;
-
-// TODO: proper errors without anyhow
+type RpcSimple = Result<bool>;
+type RpcAnswer = Result<Option<String>>;
+type RpcMultipleAnswers = Result<Option<Vec<String>>>;
 
 pub struct Client {
     stream: UnixStream,
@@ -23,8 +26,6 @@ impl Client {
     }
 
     pub fn call(&mut self, request: proto::Request) -> Result<proto::Response> {
-        // let request = proto::Request { method, argument };
-
         self.stream.write_all(&request.serialize()?)?;
         self.stream.flush()?;
 
